@@ -36,7 +36,7 @@ export default {
       title: 'Price',
       type: 'number',
       description: 'Price of the pizza in cents',
-      validation: (Rule) => Rule.min(1000).max(50000),
+      validation: (Rule) => Rule.min(1000),
       // TODO: Add a custom input component
     },
     {
@@ -62,7 +62,7 @@ export default {
       return {
         title,
         media,
-        subtitle: Object.values(toppings).join(', '),
+        subtitle: tops.join(', '),
       };
     },
   },
