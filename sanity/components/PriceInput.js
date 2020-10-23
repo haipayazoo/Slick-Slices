@@ -7,7 +7,7 @@ function createPatchFrom(value) {
 
 const formatMoney = Intl.NumberFormat('en-CA', {
   style: 'currency',
-  currency: 'USD',
+  currency: 'CAD',
 }).format;
 
 export default function PriceInput({ type, value, onChange, inputComponent }) {
@@ -21,6 +21,7 @@ export default function PriceInput({ type, value, onChange, inputComponent }) {
         type={type.name}
         value={value}
         onChange={(event) => onChange(createPatchFrom(event.target.value))}
+        ref={inputComponent}
       />
     </div>
   );
