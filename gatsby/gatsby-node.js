@@ -66,7 +66,7 @@ async function fetchBeersAndTurnIntoNodes({
   createNodeId,
   createContentDigest,
 }) {
-  // 1. Fetch a list of beers
+  // 1. Fetch a  list of beers
   const res = await fetch('https://sampleapis.com/beers/api/ale');
   const beers = await res.json();
 
@@ -74,7 +74,7 @@ async function fetchBeersAndTurnIntoNodes({
   for (const beer of beers) {
     // Create a node for each beer
     const nodeMeta = {
-      id: createNodeId(`beer-{beer.name}`),
+      id: createNodeId(`beer-${beer.name}`),
       parent: null,
       children: [],
       internal: {
