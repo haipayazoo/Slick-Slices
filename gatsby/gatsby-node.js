@@ -20,7 +20,6 @@ async function turnPizzasIntoPages({ graphql, actions }) {
   // 3. Loop over each pizza and create a page for that pizza
   data.pizzas.nodes.forEach((pizza) => {
     actions.createPage({
-      // What is the URL for this new page??
       path: `pizza/${pizza.slug.current}`,
       component: pizzaTemplate,
       context: {
@@ -33,7 +32,7 @@ async function turnPizzasIntoPages({ graphql, actions }) {
 async function turnToppingsIntoPages({ graphql, actions }) {
   // 1. Get the template
   const toppingTemplate = path.resolve('./src/pages/pizzas.js');
-  // 2. query all the toppings
+  // 2. Query all the toppings
   const { data } = await graphql(`
     query {
       toppings: allSanityTopping {
@@ -44,7 +43,7 @@ async function turnToppingsIntoPages({ graphql, actions }) {
       }
     }
   `);
-  // 3. createPage for that topping
+  // 3. Create a page for that topping
   data.toppings.nodes.forEach((topping) => {
     actions.createPage({
       path: `topping/${topping.name}`,
@@ -56,7 +55,7 @@ async function turnToppingsIntoPages({ graphql, actions }) {
       },
     });
   });
-  // 4. Pass topping data to pizza.js
+  // 4. Pass the toppings data to the pizza component
 }
 
 async function fetchBeersAndTurnIntoNodes({
@@ -69,7 +68,7 @@ async function fetchBeersAndTurnIntoNodes({
   const beers = await res.json();
   // 2. Loop over each one
   for (const beer of beers) {
-    // create a node for each beer
+    // Create a node for each beer
     const nodeMeta = {
       id: createNodeId(`beer-${beer.name}`),
       parent: null,
@@ -105,7 +104,7 @@ async function turnSlicemastersIntoPages({ graphql, actions }) {
     }
   `);
   // TODO: 2. Turn each slicemaster into their own page (TODO)
-  // 3. Figure out how many pages there are based on how many slicemasters there are, and how many per page!
+  // 3. Figure out how many pages there are based on how many slicemasters there are and how many per page!
   const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
   const pageCount = Math.ceil(data.slicemasters.totalCount / pageSize);
   console.log(
@@ -117,7 +116,7 @@ async function turnSlicemastersIntoPages({ graphql, actions }) {
     actions.createPage({
       path: `/slicemasters/${i + 1}`,
       component: path.resolve('./src/pages/slicemasters.js'),
-      // This data is pass to the template when we create it
+      // This data is passed to the template when we create it
       context: {
         skip: i * pageSize,
         currentPage: i + 1,
@@ -128,7 +127,7 @@ async function turnSlicemastersIntoPages({ graphql, actions }) {
 }
 
 export async function sourceNodes(params) {
-  // fetch a list of beers and source them into our gatsby API!
+  // Fetch a list of beers and source them into our gatsby API!
   await Promise.all([fetchBeersAndTurnIntoNodes(params)]);
 }
 
