@@ -58,6 +58,7 @@ async function turnToppingsIntoPages({ graphql, actions }) {
   // 4. Pass the toppings data to the pizza component
 }
 
+/*
 async function fetchBeersAndTurnIntoNodes({
   actions,
   createNodeId,
@@ -86,7 +87,7 @@ async function fetchBeersAndTurnIntoNodes({
     });
   }
 }
-
+*/
 async function turnSlicemastersIntoPages({ graphql, actions }) {
   // 1. Query all slicemasters
   const { data } = await graphql(`
@@ -137,10 +138,12 @@ async function turnSlicemastersIntoPages({ graphql, actions }) {
   });
 }
 
+/*
 export async function sourceNodes(params) {
   // Fetch a list of beers and source them into our gatsby API!
   await Promise.all([fetchBeersAndTurnIntoNodes(params)]);
 }
+*/
 
 export async function createPages(params) {
   // Create pages dynamically

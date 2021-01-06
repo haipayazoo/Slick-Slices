@@ -54,6 +54,7 @@ export default function BeersPage({ data }) {
   );
 }
 
+/*
 export const query = graphql`
   query {
     beers: allBeer {
@@ -70,3 +71,4 @@ export const query = graphql`
     }
   }
 `;
+*/
